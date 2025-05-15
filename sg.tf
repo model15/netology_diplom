@@ -74,6 +74,13 @@ resource "yandex_vpc_security_group" "bastion" {
     v4_cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    protocol       = "TCP"
+    description    = "zabbix in"
+    port           = 10050
+    v4_cidr_blocks = ["192.168.0.0/16"] 
+  }
+
   # Разрешаем исходящий трафик
   egress {
     protocol       = "ANY"
