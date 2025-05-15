@@ -1,0 +1,24 @@
+---
+- name: Install elasticsearch
+  ansible.builtin.apt:
+    deb: "https://mirror.yandex.ru/mirrors/elastic/8/pool/main/e/elasticsearch/elasticsearch-8.18.1-amd64.deb"
+
+- name: Copy config elasticsearch
+  ansible.builtin.copy:
+    src: elasticsearch.yml
+    dest: /etc/elasticsearch/elasticsearch.yml
+    backup: true
+
+- name: Enable and restart elastic
+  ansible.builtin.systemd:
+    name: elasticsearch
+    enabled: true
+    daemon_reload: true
+    masked: false
+    state: started
+
+- name: Restarted elasticsearch
+  ansible.builtin.service:
+    name: elasticsearch
+    state: restarted
+    enabled: true

@@ -1,0 +1,24 @@
+---
+- name: Install Kibana
+  ansible.builtin.apt:
+    deb: "https://mirror.yandex.ru/mirrors/elastic/8/pool/main/k/kibana/kibana-8.18.1-amd64.deb"
+
+- name: Copy conf file
+  ansible.builtin.template:
+    src: kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+    backup: true
+
+- name: Enable Kibana
+  ansible.builtin.systemd:
+    name: kibana
+    enabled: true
+    daemon_reload: true
+    masked: false
+    state: started
+
+- name: Restart Kibana
+  ansible.builtin.service:
+    name: kibana
+    state: restarted
+    enabled: true

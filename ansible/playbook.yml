@@ -1,0 +1,38 @@
+---
+- name: Установка Elastic
+  become: true
+  hosts: elastic.ru-central1.internal
+  roles:
+    - elastic
+
+- name: Install Kibana
+  become: true
+  hosts: kibana.ru-central1.internal
+  vars:
+    elastic_host: elastic.ru-central1.internal:9200
+  roles:
+    - kibana
+
+- name: Install Nginx, filebeat
+  hosts: web
+  vars:
+    kibana_host: kibana.ru-central1.internal:5601
+    elastic_host: elastic.ru-central1.internal:9200
+  become: true
+  roles:
+    - nginx
+    - filebeat
+
+- name: Install zabbix server
+  become: true
+  hosts: zabbix.ru-central1.internal
+  roles:
+    - zabbix
+
+- name: Zabbix-agent
+  become: true
+  hosts: web, kibana, elastic, bastion
+  vars:
+    zabbix_server: zabbix.ru-central1.internal
+  roles:
+    - zabbix-agent

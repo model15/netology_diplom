@@ -1,0 +1,5 @@
+- name: "install zabbix server"
+  become: true
+  hosts: zabbix.ru-central1.internal
+  roles:
+    - zabbix

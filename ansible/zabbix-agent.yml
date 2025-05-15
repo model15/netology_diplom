@@ -1,0 +1,7 @@
+- name: Zabbix-agent
+  become: true
+  hosts: web, kibana, elastic, bastion
+  vars:
+    zabbix_server: zabbix.ru-central1.internal
+  roles:
+    - zabbix-agent

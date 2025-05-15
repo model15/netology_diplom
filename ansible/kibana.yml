@@ -1,0 +1,8 @@
+---
+- name: "Install Kibana"
+  become: true
+  hosts: kibana.ru-central1.internal
+  vars:
+    elastic_host: elastic.ru-central1.internal:9200
+  roles:
+    - kibana

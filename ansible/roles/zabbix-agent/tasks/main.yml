@@ -1,0 +1,26 @@
+---
+- name: Install Zabbix agent 2 repo
+  ansible.builtin.apt:
+    deb: "https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb"
+
+- name: Install zabbix packages
+  ansible.builtin.apt:
+    name:
+      - zabbix-agent2
+      - zabbix-agent2-plugin-*
+    update_cache: true
+    state: present
+
+- name: Copy conf Zabbix Agent
+  ansible.builtin.template:
+    src: zabbix_agent2.conf.j2
+    dest: /etc/zabbix/zabbix_agent2.conf
+    backup: true
+    mode: '0644'
+
+- name: Enable and restart zabbix-agent2
+  ansible.builtin.systemd:
+    name: zabbix-agent2
+    enabled: true
+    masked: false
+    state: restarted

@@ -1,0 +1,5 @@
+- name: Установка Elastic
+  become: true
+  hosts: elastic.ru-central1.internal
+  roles:
+    - elastic

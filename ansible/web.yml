@@ -1,0 +1,9 @@
+- name: "Install Nginx, filebeat"
+  hosts: web
+  vars:
+    kibana_host: kibana.ru-central1.internal:5601
+    elastic_host: elastic.ru-central1.internal:9200
+  become: true
+  roles:
+    - nginx
+    - filebeat

@@ -1,0 +1,17 @@
+---
+- name: Install_nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: latest
+    update_cache: yes
+
+- name: Test_page
+  ansible.builtin.copy: 
+    src: index.html
+    dest: /var/www/html/index.html
+    owner: root
+    group: sudo
+    backup: true
+
+- name: Check logs
+  ansible.builtin.shell: "echo check $(date +'%Y-%m-%d %H:%M:%S') >> /var/log/nginx/error.log"
