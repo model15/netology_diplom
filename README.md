@@ -1,8 +1,10 @@
 # netology_diplom
 
-zabbix 51.250.86.221:8080
+http 158.160.186.216
 
-kibana 158.160.37.219:5601
+zabbix 158.160.101.182:8080
+
+kibana 158.160.120.96:5601
 
 ![01_compute_cloud](https://github.com/user-attachments/assets/efd8536f-1129-4ba4-bdf6-bdd20692bbf8)
 
@@ -21,3 +23,5 @@ kibana 158.160.37.219:5601
 ![08_curl](https://github.com/user-attachments/assets/273461ee-25a7-4642-b08c-0a8e1867dc9b)
 
 ![09_kibana](https://github.com/user-attachments/assets/23452ae5-7f83-4125-83a1-efd37379f705)
+
+![10_zabbix](https://github.com/user-attachments/assets/202cfe1d-95f9-450c-a979-fd4419d015a9)
